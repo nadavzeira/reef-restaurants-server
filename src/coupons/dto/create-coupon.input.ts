@@ -6,6 +6,7 @@ import { CouponType } from '../entities/couponsModels';
 export class CreateCouponInput {
   @Field(() => String /* TODO: Fix type*/, { description: "The coupon's type" })
   type: CouponType;
+
   @Field(() => Int, { description: "The coupon's discount" })
   discount: number;
 }

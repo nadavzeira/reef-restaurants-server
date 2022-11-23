@@ -19,13 +19,11 @@ export class OrdersService {
     return await this.orderRepository.save(order);
   }
 
-  async findOne(orderId: string): Promise<Order> {
-    const order = await this.orderRepository.findOne({
-      where: { id: orderId },
-    });
+  async findOne(id: string): Promise<Order> {
+    const order = await this.orderRepository.findOneBy({ id });
 
     if (!order) {
-      throw new NotFoundException(`Order #${orderId} not found`);
+      throw new NotFoundException(`Order #${id} not found`);
     }
 
     return order;

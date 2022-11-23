@@ -9,12 +9,15 @@ export class Storefront {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The storefront's ID" })
   id: string;
+
   @Column()
   @Field(() => String, { description: "The storefront's name" })
   name: string;
+
   @Column()
   @Field(() => String, { description: "The storefront's address" })
   address: string;
+
   @Column()
   @Field(() => String /* TODO: Fix type*/, {
     description: 'An image of the storefront',

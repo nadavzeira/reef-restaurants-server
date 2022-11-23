@@ -8,6 +8,7 @@ export class Coupon {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The storefront's ID" })
   id: string;
+
   @Column()
   @Field(() => String /* TODO: Fix type*/, { description: "The coupon's type" })
   type: CouponType;

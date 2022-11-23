@@ -21,18 +21,15 @@ export class StorefrontsService {
     return await this.storefrontRepository.save(storefront);
   }
 
-  async findOne(storefrontId: string): Promise<Storefront> {
-    const storefront = await this.storefrontRepository.findOne({
-      where: { id: storefrontId },
-    });
+  async findOne(id: string): Promise<Storefront> {
+    const storefront = await this.storefrontRepository.findOneBy({ id });
 
     if (!storefront) {
-      throw new NotFoundException(`Storefront #${storefrontId} not found`);
+      throw new NotFoundException(`Storefront #${id} not found`);
     }
 
     return storefront;
   }
-
   async findAll(): Promise<Array<Storefront>> {
     return await this.storefrontRepository.find();
   }
@@ -65,5 +62,17 @@ export class StorefrontsService {
       image: null,
       zipCodes: [],
     };
+  }
+
+  async findByZipCode(zipCode: number): Promise<Storefront[]> {
+    const storefronts = await this.storefrontRepository.find();
+
+    if (!storefronts) {
+      throw new NotFoundException(
+        `Storefront that cover the zip code #${zipCode} not found`,
+      );
+    }
+
+    return storefronts.filter(({ zipCodes }) => zipCodes.includes(zipCode));
   }
 }

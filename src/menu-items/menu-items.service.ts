@@ -18,13 +18,11 @@ export class MenuItemsService {
     return await this.menuItemRepository.save(menuItem);
   }
 
-  async findOne(menuItemId: string): Promise<MenuItem> {
-    const menuItem = await this.menuItemRepository.findOne({
-      where: { id: menuItemId },
-    });
+  async findOne(id: string): Promise<MenuItem> {
+    const menuItem = await this.menuItemRepository.findOneBy({ id });
 
     if (!menuItem) {
-      throw new NotFoundException(`MenuItem #${menuItemId} not found`);
+      throw new NotFoundException(`MenuItem #${id} not found`);
     }
 
     return menuItem;

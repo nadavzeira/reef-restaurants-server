@@ -19,13 +19,11 @@ export class CouponsService {
     return await this.couponRepository.save(coupon);
   }
 
-  async findOne(couponId: string): Promise<Coupon> {
-    const coupon = await this.couponRepository.findOne({
-      where: { id: couponId },
-    });
+  async findOne(id: string): Promise<Coupon> {
+    const coupon = await this.couponRepository.findOneBy({ id });
 
     if (!coupon) {
-      throw new NotFoundException(`Coupon #${couponId} not found`);
+      throw new NotFoundException(`Coupon #${id} not found`);
     }
 
     return coupon;
