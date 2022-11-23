@@ -12,13 +12,13 @@
 
 A small server, which helps restaurants manage their storefront, menu items & their orders 🍴 🚚 😋
 
-## Fire-starting the app
+## Fire-up the app
 
 ```bash
 $ npm i; npm start
 ```
 
-## Running Tests
+## Run Tests
 
 ```bash
 # unit tests
