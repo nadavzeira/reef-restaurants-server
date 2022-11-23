@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Any, Repository } from 'typeorm';
 
 import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
@@ -50,22 +50,18 @@ export class StorefrontsService {
     return this.storefrontRepository.save(storefront);
   }
 
-  async remove(storefrontId: string): Promise<Storefront> {
-    const storefront = await this.findOne(storefrontId);
+  async remove(id: string): Promise<Storefront> {
+    const storefront = await this.findOne(id);
 
     await this.storefrontRepository.remove(storefront);
 
-    return {
-      id: storefrontId,
-      name: '',
-      address: '',
-      image: null,
-      zipCodes: [],
-    };
+    return storefront;
   }
 
   async findByZipCode(zipCode: number): Promise<Storefront[]> {
-    const storefronts = await this.storefrontRepository.find();
+    const storefronts = await this.storefrontRepository.findBy({
+      zipCodes: Any([zipCode]),
+    });
 
     if (!storefronts) {
       throw new NotFoundException(
@@ -73,6 +69,6 @@ export class StorefrontsService {
       );
     }
 
-    return storefronts.filter(({ zipCodes }) => zipCodes.includes(zipCode));
+    return storefronts;
   }
 }

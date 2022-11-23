@@ -54,11 +54,6 @@ export class OrdersService {
 
     await this.orderRepository.remove(order);
 
-    return {
-      id: orderId,
-      storefrontId: '',
-      customerName: '',
-      customerAddress: '',
-    };
+    return order;
   }
 }

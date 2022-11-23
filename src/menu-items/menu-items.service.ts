@@ -53,10 +53,6 @@ export class MenuItemsService {
 
     await this.menuItemRepository.remove(menuItem);
 
-    return {
-      id: menuItemId,
-      name: '',
-      price: 0,
-    };
+    return menuItem;
   }
 }

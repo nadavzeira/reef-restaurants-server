@@ -54,10 +54,6 @@ export class CouponsService {
 
     await this.couponRepository.remove(coupon);
 
-    return {
-      id: couponId,
-      type: '',
-      discount: 0,
-    };
+    return coupon;
   }
 }
