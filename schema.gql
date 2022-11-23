@@ -19,15 +19,66 @@ type Storefront {
   zipCodes: [Int!]!
 }
 
+type MenuItem {
+  """The menu item's ID"""
+  id: String!
+
+  """The menu item's name"""
+  name: String!
+
+  """The menu item's price"""
+  price: Int!
+}
+
+type Order {
+  """The order's ID"""
+  id: String!
+
+  """The order's storefront id"""
+  storefrontId: String!
+
+  """The order's customer name"""
+  customerName: String!
+
+  """The order's customer address"""
+  customerAddress: String!
+}
+
+type Coupon {
+  """The storefront's ID"""
+  id: String!
+
+  """The coupon's type"""
+  type: String!
+
+  """The coupon's discount"""
+  discount: Int!
+}
+
 type Query {
   storefronts: [Storefront!]!
   storefront(id: String!): Storefront!
+  menuItems: [MenuItem!]!
+  menuItem(id: String!): MenuItem!
+  orders: [Order!]!
+  order(id: String!): Order!
+  coupons: [Coupon!]!
+  coupon(id: Int!): Coupon!
 }
 
 type Mutation {
   createStorefront(createStorefrontInput: CreateStorefrontInput!): Storefront!
   updateStorefront(updateStorefrontInput: UpdateStorefrontInput!): Storefront!
   removeStorefront(id: String!): Storefront!
+  createMenuItem(createMenuItemInput: CreateMenuItemInput!): MenuItem!
+  updateMenuItem(updateMenuItemInput: UpdateMenuItemInput!): MenuItem!
+  removeMenuItem(id: String!): MenuItem!
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+  updateOrder(updateOrderInput: UpdateOrderInput!): Order!
+  removeOrder(id: String!): Order!
+  createCoupon(createCouponInput: CreateCouponInput!): Coupon!
+  updateCoupon(updateCouponInput: UpdateCouponInput!): Coupon!
+  removeCoupon(id: Int!): Coupon!
 }
 
 input CreateStorefrontInput {
@@ -56,5 +107,62 @@ input UpdateStorefrontInput {
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]
+  id: String!
+}
+
+input CreateMenuItemInput {
+  """The menu item's name"""
+  name: String!
+
+  """The menu item's price"""
+  price: Int!
+}
+
+input UpdateMenuItemInput {
+  """The menu item's name"""
+  name: String
+
+  """The menu item's price"""
+  price: Int
+  id: String!
+}
+
+input CreateOrderInput {
+  """The order's storefront id"""
+  storefrontId: String!
+
+  """The order's customer name"""
+  customerName: String!
+
+  """The order's customer address"""
+  customerAddress: String!
+}
+
+input UpdateOrderInput {
+  """The order's storefront id"""
+  storefrontId: String
+
+  """The order's customer name"""
+  customerName: String
+
+  """The order's customer address"""
+  customerAddress: String
+  id: String!
+}
+
+input CreateCouponInput {
+  """The coupon's type"""
+  type: String!
+
+  """The coupon's discount"""
+  discount: Int!
+}
+
+input UpdateCouponInput {
+  """The coupon's type"""
+  type: String
+
+  """The coupon's discount"""
+  discount: Int
   id: String!
 }
