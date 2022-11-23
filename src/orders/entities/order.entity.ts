@@ -30,10 +30,6 @@ export class Order {
   @Field(() => String, { description: "The order's customer address" })
   customerAddress: string;
 
-  // @OneToOne(() => Storefront)
-  // @JoinColumn()
-  // storefront: Storefront;
-
   @ManyToOne(() => Storefront, (storefront) => storefront.menuItems)
   storefront: Storefront;
 
