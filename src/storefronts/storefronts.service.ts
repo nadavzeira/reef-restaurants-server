@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Any, Repository } from 'typeorm';
+import { ArrayContains, Repository } from 'typeorm';
 
 import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
@@ -60,7 +60,7 @@ export class StorefrontsService {
 
   async findByZipCode(zipCode: number): Promise<Storefront[]> {
     const storefronts = await this.storefrontRepository.findBy({
-      zipCodes: Any([zipCode]),
+      zipCodes: ArrayContains([zipCode]),
     });
 
     if (!storefronts) {
