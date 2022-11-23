@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import {
   Column,
@@ -32,4 +33,7 @@ export class Order {
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.order)
   menuItems: MenuItem[];
+
+  @OneToMany(() => Coupon, (coupon) => coupon.order)
+  coupons: Coupon[];
 }

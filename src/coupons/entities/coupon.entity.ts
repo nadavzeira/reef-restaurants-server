@@ -1,6 +1,13 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Order } from 'src/orders/entities/order.entity';
 import { Storefront } from 'src/storefronts/entities/storefront.entity';
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { CouponType } from './couponsModels';
 
@@ -21,4 +28,7 @@ export class Coupon {
 
   @ManyToMany(() => Storefront, (storefront) => storefront.coupons)
   storefronts: Storefront[];
+
+  @ManyToOne(() => Order, (order) => order.coupons)
+  order: Order;
 }
