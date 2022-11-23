@@ -58,6 +58,7 @@ type Query {
   storefrontsByZipCode(zipCode: Int!): [Storefront!]!
   menuItems: [MenuItem!]!
   menuItem(id: String!): MenuItem!
+  menuItemsByStorefront(storefrontId: String!): [MenuItem!]!
   orders: [Order!]!
   order(id: String!): Order!
   coupons: [Coupon!]!
