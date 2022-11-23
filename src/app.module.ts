@@ -5,6 +5,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { StorefrontsModule } from './storefronts/storefronts.module';
+import { MenuItemsModule } from './menu-items/menu-items.module';
+import { OrdersModule } from './orders/orders.module';
+import { CouponsModule } from './coupons/coupons.module';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -28,7 +31,14 @@ const TypeOrm = TypeOrmModule.forRoot({
 });
 
 @Module({
-  imports: [GraphQL, TypeOrm, StorefrontsModule],
+  imports: [
+    GraphQL,
+    TypeOrm,
+    StorefrontsModule,
+    MenuItemsModule,
+    OrdersModule,
+    CouponsModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
