@@ -55,6 +55,7 @@ type Order {
 type Query {
   storefronts: [Storefront!]!
   storefront(id: String!): Storefront!
+  storefrontsByZipCode(zipCode: Int!): [Storefront!]!
   menuItems: [MenuItem!]!
   menuItem(id: String!): MenuItem!
   orders: [Order!]!
