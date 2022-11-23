@@ -1,6 +1,6 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { StorefrontsService } from './storefronts.service';
-import { Storefront } from './entities/storefront.entity.new';
+import { Storefront } from './entities/storefront.entity';
 import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
 
@@ -21,7 +21,7 @@ export class StorefrontsResolver {
   }
 
   @Query(() => Storefront, { name: 'storefront' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(@Args('id', { type: () => String }) id: string) {
     return this.storefrontsService.findOne(id);
   }
 
@@ -36,7 +36,7 @@ export class StorefrontsResolver {
   }
 
   @Mutation(() => Storefront)
-  removeStorefront(@Args('id', { type: () => Int }) id: number) {
+  removeStorefront(@Args('id', { type: () => String }) id: string) {
     return this.storefrontsService.remove(id);
   }
 }

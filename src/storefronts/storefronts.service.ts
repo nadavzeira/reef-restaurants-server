@@ -1,28 +1,68 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
 import { Storefront } from './entities/storefront.entity';
 
 @Injectable()
 export class StorefrontsService {
-  create(createStorefrontInput: CreateStorefrontInput) {
-    return { exampleField: createStorefrontInput.exampleField };
+  constructor(
+    @InjectRepository(Storefront)
+    private readonly storefrontRepository: Repository<Storefront>,
+  ) {}
+
+  async create(
+    createStorefrontInput: CreateStorefrontInput,
+  ): Promise<Storefront> {
+    const storefront = this.storefrontRepository.create(createStorefrontInput);
+
+    return await this.storefrontRepository.save(storefront);
   }
 
-  findAll(): Storefront[] {
-    return [{ exampleField: 1 }];
+  async findOne(storefrontId: string): Promise<Storefront> {
+    const storefront = await this.storefrontRepository.findOne({
+      where: { id: storefrontId },
+    });
+
+    if (!storefront) {
+      throw new NotFoundException(`Storefront #${storefrontId} not found`);
+    }
+
+    return storefront;
   }
 
-  findOne(id: number): Storefront {
-    return { exampleField: id };
+  async findAll(): Promise<Array<Storefront>> {
+    return await this.storefrontRepository.find();
   }
 
-  update(id: number, updateStorefrontInput: UpdateStorefrontInput): Storefront {
-    return { exampleField: updateStorefrontInput.id };
+  async update(
+    storefrontId: string,
+    updateStorefrontInput: UpdateStorefrontInput,
+  ): Promise<Storefront> {
+    const storefront = await this.storefrontRepository.preload({
+      id: storefrontId,
+      ...updateStorefrontInput,
+    });
+
+    if (!storefront) {
+      throw new NotFoundException(`Storefront #${storefrontId} not found`);
+    }
+
+    return this.storefrontRepository.save(storefront);
   }
 
-  remove(id: number): Storefront {
-    return { exampleField: id };
+  async remove(storefrontId: string): Promise<Storefront> {
+    const storefront = await this.findOne(storefrontId);
+
+    await this.storefrontRepository.remove(storefront);
+
+    return {
+      id: storefrontId,
+      name: '',
+      address: '',
+      image: null,
+      zipCodes: [],
+    };
   }
 }
-``;
