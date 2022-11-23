@@ -1,15 +1,24 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Column, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
+import { Storefront } from './../../storefronts/entities/storefront.entity';
+
+@Entity()
 @ObjectType()
 export class Order {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The order's ID" })
   id: string;
 
-  @Column()
-  @Field(() => String, { description: "The order's storefront id" })
-  storefrontId: string;
+  @OneToOne(() => Storefront)
+  @JoinColumn()
+  storefront: Storefront;
 
   @Column()
   @Field(() => String, { description: "The order's customer name" })
