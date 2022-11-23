@@ -5,6 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { StorefrontsModule } from './storefronts/storefronts.module';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 const GraphQL = GraphQLModule.forRoot<ApolloDriverConfig>({
   driver: ApolloDriver,
@@ -16,11 +18,11 @@ const GraphQL = GraphQLModule.forRoot<ApolloDriverConfig>({
 const TypeOrm = TypeOrmModule.forRoot({
   keepConnectionAlive: true,
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'postgres',
-  password: '123456',
-  database: 'reef',
+  host: process.env.DB_HOST,
+  port: +process.env.DB_PORT,
+  username: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
   autoLoadEntities: true,
   synchronize: true,
 });
