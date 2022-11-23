@@ -1,5 +1,5 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { Base64, imageTypes } from '../entities/storefrontTypes';
+import { Base64, imageTypes } from '../entities/storefrontModels';
 
 @InputType()
 export class CreateStorefrontInput {
