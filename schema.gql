@@ -2,17 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Coupon {
-  """The storefront's ID"""
-  id: String!
-
-  """The coupon's type"""
-  type: String!
-
-  """The coupon's discount"""
-  discount: Int!
-}
-
 type MenuItem {
   """The menu item's ID"""
   id: String!
@@ -22,20 +11,6 @@ type MenuItem {
 
   """The menu item's price"""
   price: Int!
-}
-
-type Order {
-  """The order's ID"""
-  id: String!
-
-  """The order's storefront id"""
-  storefrontId: String!
-
-  """The order's customer name"""
-  customerName: String!
-
-  """The order's customer address"""
-  customerAddress: String!
 }
 
 type Storefront {
@@ -53,6 +28,28 @@ type Storefront {
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]!
+}
+
+type Order {
+  """The order's ID"""
+  id: String!
+
+  """The order's customer name"""
+  customerName: String!
+
+  """The order's customer address"""
+  customerAddress: String!
+}
+
+type Coupon {
+  """The storefront's ID"""
+  id: String!
+
+  """The coupon's type"""
+  type: String!
+
+  """The coupon's discount"""
+  discount: Int!
 }
 
 type Query {
