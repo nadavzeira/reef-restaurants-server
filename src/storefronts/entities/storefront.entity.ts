@@ -1,6 +1,14 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 import { Base64, imageTypes } from './storefrontModels';
 
@@ -33,4 +41,8 @@ export class Storefront {
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.storefront)
   menuItems: MenuItem[];
+
+  @ManyToMany(() => Coupon, (coupon) => coupon.storefronts)
+  @JoinTable()
+  coupons: Coupon[];
 }
