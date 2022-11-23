@@ -40,4 +40,11 @@ export class MenuItemsResolver {
   removeMenuItem(@Args('id', { type: () => String }) id: string) {
     return this.menuItemsService.remove(id);
   }
+
+  @Query(() => [MenuItem], { name: 'menuItemsByStorefront' })
+  findStorefrontMenu(
+    @Args('storefrontId', { type: () => String }) storefrontId: string,
+  ) {
+    return this.menuItemsService.findStorefrontMenu(storefrontId);
+  }
 }
