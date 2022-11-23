@@ -23,6 +23,7 @@ export class Storefront {
     description: 'An image of the storefront',
   })
   image: Base64<imageTypes>;
+
   @Column('int', { array: true })
   @Field(() => [Int], {
     description: "A list of zipcodes in the storefront's coverage area",
