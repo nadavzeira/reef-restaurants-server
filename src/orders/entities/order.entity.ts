@@ -1,8 +1,10 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import {
   Column,
   Entity,
   JoinColumn,
+  OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -27,4 +29,7 @@ export class Order {
   @Column()
   @Field(() => String, { description: "The order's customer address" })
   customerAddress: string;
+
+  @OneToMany(() => MenuItem, (menuItem) => menuItem.order)
+  menuItems: MenuItem[];
 }

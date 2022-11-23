@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Order } from 'src/orders/entities/order.entity';
 import { Storefront } from 'src/storefronts/entities/storefront.entity';
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
@@ -19,4 +20,7 @@ export class MenuItem {
 
   @ManyToOne(() => Storefront, (storefront) => storefront.menuItems)
   storefront: Storefront;
+
+  @ManyToOne(() => Order, (order) => order.menuItems)
+  order: Order;
 }
