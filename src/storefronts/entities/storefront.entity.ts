@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 import { Base64, imageTypes } from './storefrontModels';
 
@@ -29,4 +30,7 @@ export class Storefront {
     description: "A list of zipcodes in the storefront's coverage area",
   })
   zipCodes: number[];
+
+  @OneToMany(() => MenuItem, (menuItem) => menuItem.storefront)
+  menuItems: MenuItem[];
 }

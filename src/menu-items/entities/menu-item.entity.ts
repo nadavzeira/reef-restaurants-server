@@ -1,6 +1,8 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Storefront } from 'src/storefronts/entities/storefront.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
+@Entity()
 @ObjectType()
 export class MenuItem {
   @PrimaryGeneratedColumn('uuid')
@@ -14,4 +16,7 @@ export class MenuItem {
   @Column()
   @Field(() => Int, { description: "The menu item's price" })
   price: number;
+
+  @ManyToOne(() => Storefront, (storefront) => storefront.menuItems)
+  storefront: Storefront;
 }
