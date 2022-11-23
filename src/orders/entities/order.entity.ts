@@ -1,5 +1,5 @@
-import { ObjectType, Field } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Field, ObjectType } from '@nestjs/graphql';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 export class Order {

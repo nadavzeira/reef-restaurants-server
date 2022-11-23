@@ -1,5 +1,6 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 import { Base64, imageTypes } from './storefrontModels';
 
 @Entity()

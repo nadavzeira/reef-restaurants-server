@@ -1,7 +1,8 @@
 import { Module } from '@nestjs/common';
-import { CouponsService } from './coupons.service';
-import { CouponsResolver } from './coupons.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
+import { CouponsResolver } from './coupons.resolver';
+import { CouponsService } from './coupons.service';
 import { Coupon } from './entities/coupon.entity';
 
 @Module({

@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { MenuItemsService } from './menu-items.service';
-import { MenuItemsResolver } from './menu-items.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { MenuItem } from './entities/menu-item.entity';
+import { MenuItemsResolver } from './menu-items.resolver';
+import { MenuItemsService } from './menu-items.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([MenuItem])],

@@ -1,6 +1,7 @@
+import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Column, PrimaryGeneratedColumn } from 'typeorm';
+
 import { CouponType } from './couponsModels';
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @ObjectType()
 export class Coupon {

@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { StorefrontsService } from './storefronts.service';
-import { Storefront } from './entities/storefront.entity';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+
 import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
+import { Storefront } from './entities/storefront.entity';
+import { StorefrontsService } from './storefronts.service';
 
 @Resolver(() => Storefront)
 export class StorefrontsResolver {

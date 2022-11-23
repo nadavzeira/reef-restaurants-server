@@ -1,8 +1,9 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+
 import { CouponsService } from './coupons.service';
-import { Coupon } from './entities/coupon.entity';
 import { CreateCouponInput } from './dto/create-coupon.input';
 import { UpdateCouponInput } from './dto/update-coupon.input';
+import { Coupon } from './entities/coupon.entity';
 
 @Resolver(() => Coupon)
 export class CouponsResolver {

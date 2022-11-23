@@ -1,14 +1,15 @@
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { StorefrontsModule } from './storefronts/storefronts.module';
+import * as dotenv from 'dotenv';
+
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { CouponsModule } from './coupons/coupons.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
 import { OrdersModule } from './orders/orders.module';
-import { CouponsModule } from './coupons/coupons.module';
-import * as dotenv from 'dotenv';
+import { StorefrontsModule } from './storefronts/storefronts.module';
 dotenv.config();
 
 const GraphQL = GraphQLModule.forRoot<ApolloDriverConfig>({

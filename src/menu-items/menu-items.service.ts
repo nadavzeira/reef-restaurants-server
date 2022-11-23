@@ -1,9 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { CreateMenuItemInput } from './dto/create-menu-item.input';
-import { MenuItem } from './entities/menu-item.entity';
 import { UpdateMenuItemInput } from './dto/update-menu-item.input';
+import { MenuItem } from './entities/menu-item.entity';
 
 @Injectable()
 export class MenuItemsService {

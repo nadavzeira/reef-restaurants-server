@@ -1,5 +1,6 @@
+import { Field, InputType, PartialType } from '@nestjs/graphql';
+
 import { CreateMenuItemInput } from './create-menu-item.input';
-import { InputType, Field, PartialType } from '@nestjs/graphql';
 
 @InputType()
 export class UpdateMenuItemInput extends PartialType(CreateMenuItemInput) {

@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+
 import { CouponsResolver } from './coupons.resolver';
 import { CouponsService } from './coupons.service';
 
