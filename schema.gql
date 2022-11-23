@@ -1,0 +1,30 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Storefront {
+  """An example field"""
+  exampleField: Int!
+}
+
+type Query {
+  storefronts: [Storefront!]!
+  storefront(id: Int!): Storefront!
+}
+
+type Mutation {
+  createStorefront(createStorefrontInput: CreateStorefrontInput!): Storefront!
+  updateStorefront(updateStorefrontInput: UpdateStorefrontInput!): Storefront!
+  removeStorefront(id: Int!): Storefront!
+}
+
+input CreateStorefrontInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateStorefrontInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
