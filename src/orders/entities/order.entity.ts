@@ -5,6 +5,9 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -19,10 +22,6 @@ export class Order {
   @Field(() => String, { description: "The order's ID" })
   id: string;
 
-  @OneToOne(() => Storefront)
-  @JoinColumn()
-  storefront: Storefront;
-
   @Column()
   @Field(() => String, { description: "The order's customer name" })
   customerName: string;
@@ -31,7 +30,15 @@ export class Order {
   @Field(() => String, { description: "The order's customer address" })
   customerAddress: string;
 
-  @OneToMany(() => MenuItem, (menuItem) => menuItem.order)
+  // @OneToOne(() => Storefront)
+  // @JoinColumn()
+  // storefront: Storefront;
+
+  @ManyToOne(() => Storefront, (storefront) => storefront.menuItems)
+  storefront: Storefront;
+
+  @ManyToMany(() => MenuItem, (menuItem) => menuItem.orders)
+  @JoinTable()
   menuItems: MenuItem[];
 
   @OneToMany(() => Coupon, (coupon) => coupon.order)

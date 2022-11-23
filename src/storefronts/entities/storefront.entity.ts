@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
+import { Order } from 'src/orders/entities/order.entity';
 import {
   Column,
   Entity,
@@ -38,6 +39,9 @@ export class Storefront {
     description: "A list of zipcodes in the storefront's coverage area",
   })
   zipCodes: number[];
+
+  @OneToMany(() => Order, (order) => order.storefront)
+  orders: Order[];
 
   @OneToMany(() => MenuItem, (menuItem) => menuItem.storefront)
   menuItems: MenuItem[];
