@@ -4,8 +4,6 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { CouponsModule } from './coupons/coupons.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
 import { OrdersModule } from './orders/orders.module';
@@ -40,7 +38,5 @@ const TypeOrm = TypeOrmModule.forRoot({
     OrdersModule,
     CouponsModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
