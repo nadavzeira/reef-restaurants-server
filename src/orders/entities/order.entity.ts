@@ -1,4 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Guid } from 'guid-typescript';
 import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import {
@@ -20,7 +21,7 @@ import { Storefront } from './../../storefronts/entities/storefront.entity';
 export class Order {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The order's ID" })
-  id: string;
+  id: Guid;
 
   @Column()
   @Field(() => String, { description: "The order's customer name" })

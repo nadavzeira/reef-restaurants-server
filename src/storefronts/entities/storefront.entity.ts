@@ -18,7 +18,7 @@ import { Base64, imageTypes } from './storefrontModels';
 export class Storefront {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The storefront's ID" })
-  id: string;
+  id: Guid;
 
   @Column()
   @Field(() => String, { description: "The storefront's name" })

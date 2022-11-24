@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Guid } from 'guid-typescript';
 import { Repository } from 'typeorm';
 
 import { CreateMenuItemInput } from './dto/create-menu-item.input';
@@ -18,8 +19,10 @@ export class MenuItemsService {
     return await this.menuItemRepository.save(menuItem);
   }
 
-  async findOne(id: string): Promise<MenuItem> {
-    const menuItem = await this.menuItemRepository.findOneBy({ id });
+  async findOne(id: Guid): Promise<MenuItem> {
+    const menuItem = await this.menuItemRepository.findOneBy({
+      id: id.toString(),
+    });
 
     if (!menuItem) {
       throw new NotFoundException(`MenuItem #${id} not found`);
@@ -33,7 +36,7 @@ export class MenuItemsService {
   }
 
   async update(
-    menuItemId: string,
+    menuItemId: Guid,
     updateMenuItemInput: UpdateMenuItemInput,
   ): Promise<MenuItem> {
     const menuItem = await this.menuItemRepository.preload({
@@ -48,7 +51,7 @@ export class MenuItemsService {
     return this.menuItemRepository.save(menuItem);
   }
 
-  async remove(menuItemId: string): Promise<MenuItem> {
+  async remove(menuItemId: Guid): Promise<MenuItem> {
     const menuItem = await this.findOne(menuItemId);
 
     await this.menuItemRepository.remove(menuItem);
@@ -56,7 +59,7 @@ export class MenuItemsService {
     return menuItem;
   }
 
-  async findStorefrontMenu(storefrontId: string): Promise<Array<MenuItem>> {
+  async findStorefrontMenu(storefrontId: Guid): Promise<Array<MenuItem>> {
     const menuItems = await this.menuItemRepository.find({
       where: {
         storefront: {

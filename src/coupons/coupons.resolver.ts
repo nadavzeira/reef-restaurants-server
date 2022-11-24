@@ -1,4 +1,5 @@
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Guid } from 'guid-typescript';
 
 import { CouponsService } from './coupons.service';
 import { CreateCouponInput } from './dto/create-coupon.input';
@@ -22,7 +23,7 @@ export class CouponsResolver {
   }
 
   @Query(() => Coupon, { name: 'coupon' })
-  findOne(@Args('id', { type: () => Int }) id: string) {
+  findOne(@Args('id', { type: () => Int }) id: Guid) {
     return this.couponsService.findOne(id);
   }
 
@@ -34,7 +35,7 @@ export class CouponsResolver {
   }
 
   @Mutation(() => Coupon)
-  removeCoupon(@Args('id', { type: () => Int }) id: string) {
+  removeCoupon(@Args('id', { type: () => Int }) id: Guid) {
     return this.couponsService.remove(id);
   }
 }

@@ -16,7 +16,7 @@ import { CouponType } from './couponsModels';
 export class Coupon {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The storefront's ID" })
-  id: string;
+  id: Guid;
 
   @Column()
   @Field(() => String /* TODO: Fix type*/, { description: "The coupon's type" })

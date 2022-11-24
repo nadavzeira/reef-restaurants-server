@@ -22,7 +22,7 @@ export class StorefrontsResolver {
   }
 
   @Query(() => Storefront, { name: 'storefront' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: Guid) {
     return this.storefrontsService.findOne(id);
   }
 
@@ -37,7 +37,7 @@ export class StorefrontsResolver {
   }
 
   @Mutation(() => Storefront)
-  removeStorefront(@Args('id', { type: () => String }) id: string) {
+  removeStorefront(@Args('id', { type: () => String }) id: Guid) {
     return this.storefrontsService.remove(id);
   }
 

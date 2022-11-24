@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Guid } from 'guid-typescript';
 import { Repository } from 'typeorm';
 
 import { CreateCouponInput } from './dto/create-coupon.input';
@@ -19,8 +20,8 @@ export class CouponsService {
     return await this.couponRepository.save(coupon);
   }
 
-  async findOne(id: string): Promise<Coupon> {
-    const coupon = await this.couponRepository.findOneBy({ id });
+  async findOne(id: Guid): Promise<Coupon> {
+    const coupon = await this.couponRepository.findOneBy({ id: id.toString() });
 
     if (!coupon) {
       throw new NotFoundException(`Coupon #${id} not found`);
@@ -34,7 +35,7 @@ export class CouponsService {
   }
 
   async update(
-    couponId: string,
+    couponId: Guid,
     updateCouponInput: UpdateCouponInput,
   ): Promise<Coupon> {
     const coupon = await this.couponRepository.preload({
@@ -49,7 +50,7 @@ export class CouponsService {
     return this.couponRepository.save(coupon);
   }
 
-  async remove(couponId: string): Promise<Coupon> {
+  async remove(couponId: Guid): Promise<Coupon> {
     const coupon = await this.findOne(couponId);
 
     await this.couponRepository.remove(coupon);

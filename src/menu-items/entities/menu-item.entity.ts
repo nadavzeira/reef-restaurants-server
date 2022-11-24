@@ -14,7 +14,7 @@ import {
 export class MenuItem {
   @PrimaryGeneratedColumn('uuid')
   @Field(() => String, { description: "The menu item's ID" })
-  id: string;
+  id: Guid;
 
   @Column()
   @Field(() => String, { description: "The menu item's name" })

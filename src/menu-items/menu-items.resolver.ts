@@ -1,4 +1,5 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Guid } from 'guid-typescript';
 
 import { CreateMenuItemInput } from './dto/create-menu-item.input';
 import { UpdateMenuItemInput } from './dto/update-menu-item.input';
@@ -22,7 +23,7 @@ export class MenuItemsResolver {
   }
 
   @Query(() => MenuItem, { name: 'menuItem' })
-  findOne(@Args('id', { type: () => String }) id: string) {
+  findOne(@Args('id', { type: () => String }) id: Guid) {
     return this.menuItemsService.findOne(id);
   }
 
@@ -37,13 +38,13 @@ export class MenuItemsResolver {
   }
 
   @Mutation(() => MenuItem)
-  removeMenuItem(@Args('id', { type: () => String }) id: string) {
+  removeMenuItem(@Args('id', { type: () => String }) id: Guid) {
     return this.menuItemsService.remove(id);
   }
 
   @Query(() => [MenuItem], { name: 'menuItemsByStorefront' })
   findStorefrontMenu(
-    @Args('storefrontId', { type: () => String }) storefrontId: string,
+    @Args('storefrontId', { type: () => String }) storefrontId: Guid,
   ) {
     return this.menuItemsService.findStorefrontMenu(storefrontId);
   }

@@ -19,8 +19,8 @@ export class OrdersService {
     return await this.orderRepository.save(order);
   }
 
-  async findOne(id: string): Promise<Order> {
-    const order = await this.orderRepository.findOneBy({ id });
+  async findOne(id: Guid): Promise<Order> {
+    const order = await this.orderRepository.findOneBy({ id: id.toString() });
 
     if (!order) {
       throw new NotFoundException(`Order #${id} not found`);
@@ -34,7 +34,7 @@ export class OrdersService {
   }
 
   async update(
-    orderId: string,
+    orderId: Guid,
     updateOrderInput: UpdateOrderInput,
   ): Promise<Order> {
     const order = await this.orderRepository.preload({
@@ -49,7 +49,7 @@ export class OrdersService {
     return this.orderRepository.save(order);
   }
 
-  async remove(orderId: string): Promise<Order> {
+  async remove(orderId: Guid): Promise<Order> {
     const order = await this.findOne(orderId);
 
     await this.orderRepository.remove(order);

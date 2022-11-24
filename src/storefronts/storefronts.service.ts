@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Guid } from 'guid-typescript';
 import { ArrayContains, Repository } from 'typeorm';
 
 import { CreateStorefrontInput } from './dto/create-storefront.input';
@@ -21,8 +22,10 @@ export class StorefrontsService {
     return await this.storefrontRepository.save(storefront);
   }
 
-  async findOne(id: string): Promise<Storefront> {
-    const storefront = await this.storefrontRepository.findOneBy({ id });
+  async findOne(id: Guid): Promise<Storefront> {
+    const storefront = await this.storefrontRepository.findOneBy({
+      id: id.toString(),
+    });
 
     if (!storefront) {
       throw new NotFoundException(`Storefront #${id} not found`);
@@ -35,7 +38,7 @@ export class StorefrontsService {
   }
 
   async update(
-    storefrontId: string,
+    storefrontId: Guid,
     updateStorefrontInput: UpdateStorefrontInput,
   ): Promise<Storefront> {
     const storefront = await this.storefrontRepository.preload({
@@ -50,7 +53,7 @@ export class StorefrontsService {
     return this.storefrontRepository.save(storefront);
   }
 
-  async remove(id: string): Promise<Storefront> {
+  async remove(id: Guid): Promise<Storefront> {
     const storefront = await this.findOne(id);
 
     await this.storefrontRepository.remove(storefront);
