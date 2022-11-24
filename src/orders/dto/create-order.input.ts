@@ -5,14 +5,14 @@ import { Guid } from 'guid-typescript';
 
 @InputType()
 export class CreateOrderInput {
-  @Field(() => String, { description: "The order's storefront id" })
-  storefrontId: Guid;
-
   @Field(() => String, { description: "The order's customer name" })
   customerName: string;
 
   @Field(() => String, { description: "The order's customer address" })
   customerAddress: string;
+
+  @Field(() => String, { description: "The order's storefront id" })
+  storefrontId: Guid;
 
   // @Field(() => [MenuItem], { description: "The order's items" })
   // menuItems: MenuItem[];

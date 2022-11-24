@@ -61,7 +61,7 @@ export class StorefrontsService {
     return storefront;
   }
 
-  async findByZipCode(zipCode: number): Promise<Storefront[]> {
+  async findAllByZipCode(zipCode: number): Promise<Storefront[]> {
     const storefronts = await this.storefrontRepository.findBy({
       zipCodes: ArrayContains([zipCode]),
     });

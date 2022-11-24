@@ -9,6 +9,7 @@ import { MenuItemsService } from './menu-items.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([MenuItem, Storefront, Order])],
+  exports: [MenuItemsService],
   providers: [MenuItemsResolver, MenuItemsService],
 })
 export class MenuItemsModule {}

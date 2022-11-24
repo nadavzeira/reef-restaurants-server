@@ -1,5 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Guid } from 'guid-typescript';
 import { Repository } from 'typeorm';
 
 import { CreateOrderInput } from './dto/create-order.input';
@@ -55,5 +56,21 @@ export class OrdersService {
     await this.orderRepository.remove(order);
 
     return order;
+  }
+
+  async findAllByStorefront(id: Guid): Promise<Order[]> {
+    const orders = await this.orderRepository.findBy({
+      storefront: {
+        id: id.toString(),
+      },
+    });
+
+    if (!orders) {
+      throw new NotFoundException(
+        `Orders from the storefront #${id} not found`,
+      );
+    }
+
+    return orders;
   }
 }

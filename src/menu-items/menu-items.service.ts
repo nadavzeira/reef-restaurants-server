@@ -59,11 +59,11 @@ export class MenuItemsService {
     return menuItem;
   }
 
-  async findStorefrontMenu(storefrontId: Guid): Promise<Array<MenuItem>> {
+  async findStorefrontMenu(id: Guid): Promise<Array<MenuItem>> {
     const menuItems = await this.menuItemRepository.find({
       where: {
         storefront: {
-          id: storefrontId,
+          id: id.toString(),
         },
       },
     });
