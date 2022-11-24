@@ -5,7 +5,11 @@
 </p>
 
 <p align="center">
-  <a href="https://www.reeftechnology.com/" target="_blank">REEF: The Neighborhood Company</a></p>
+  <a href="https://www.reeftechnology.com/" target="_blank">
+    REEF <br/>
+    The Neigoborhood Company
+  </a>
+</p>
 <p align="center">
 
 ## Description
