@@ -123,6 +123,34 @@ input CreateOrderInput {
 
   """The order's storefront id"""
   storefrontId: String!
+
+  """The order's items"""
+  menuItems: [MenuItemInput!]!
+
+  """The order's coupons"""
+  coupons: [CouponInput!]!
+}
+
+input MenuItemInput {
+  """The menu item's ID"""
+  id: String!
+
+  """The menu item's name"""
+  name: String!
+
+  """The menu item's price"""
+  price: Int!
+}
+
+input CouponInput {
+  """The storefront's ID"""
+  id: String!
+
+  """The coupon's type"""
+  type: String!
+
+  """The coupon's discount"""
+  discount: Int!
 }
 
 input UpdateOrderInput {
@@ -134,6 +162,12 @@ input UpdateOrderInput {
 
   """The order's storefront id"""
   storefrontId: String
+
+  """The order's items"""
+  menuItems: [MenuItemInput!]
+
+  """The order's coupons"""
+  coupons: [CouponInput!]
   id: String!
 }
 

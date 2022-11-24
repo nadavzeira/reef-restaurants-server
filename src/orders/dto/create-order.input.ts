@@ -1,7 +1,7 @@
 import { Field, InputType } from '@nestjs/graphql';
 import { Guid } from 'guid-typescript';
-// import { Coupon } from 'src/coupons/entities/coupon.entity';
-// import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
+import { CouponInput } from 'src/coupons/entities/coupon-input.entity';
+import { MenuItemInput } from 'src/menu-items/entities/menu-item-input.entity';
 
 @InputType()
 export class CreateOrderInput {
@@ -14,9 +14,9 @@ export class CreateOrderInput {
   @Field(() => String, { description: "The order's storefront id" })
   storefrontId: Guid;
 
-  // @Field(() => [MenuItem], { description: "The order's items" })
-  // menuItems: MenuItem[];
+  @Field(() => [MenuItemInput], { description: "The order's items" })
+  menuItems: MenuItemInput[];
 
-  // @Field(() => [Coupon], { description: "The order's coupons" })
-  // coupons: Coupon[];
+  @Field(() => [CouponInput], { description: "The order's coupons" })
+  coupons: CouponInput[];
 }
