@@ -1,4 +1,5 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Guid } from 'guid-typescript';
 import { Order } from 'src/orders/entities/order.entity';
 import { Storefront } from 'src/storefronts/entities/storefront.entity';
 import {
