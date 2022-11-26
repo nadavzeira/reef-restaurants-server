@@ -18,7 +18,7 @@ import { Storefront } from './../../storefronts/entities/storefront.entity';
 @ObjectType()
 export class Order {
   @PrimaryGeneratedColumn('uuid')
-  @Field(() => String, { description: "The order's ID" })
+  @Field(() => String)
   id: Guid;
 
   @Column()

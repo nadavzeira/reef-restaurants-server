@@ -18,7 +18,7 @@ import { Base64, imageTypes } from './storefrontModels';
 @ObjectType()
 export class Storefront {
   @PrimaryGeneratedColumn('uuid')
-  @Field(() => String, { description: "The storefront's ID" })
+  @Field(() => String)
   id: Guid;
 
   @Column()
@@ -29,7 +29,7 @@ export class Storefront {
   @Field(() => String, { description: "The storefront's address" })
   address: string;
 
-  @Column()
+  @Column('bytea')
   @Field(() => String /* TODO: Fix type*/, {
     description: 'An image of the storefront',
   })

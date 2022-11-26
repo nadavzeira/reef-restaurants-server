@@ -6,7 +6,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @InputType()
 export class MenuItemInput {
   @PrimaryGeneratedColumn('uuid')
-  @Field(() => String, { description: "The menu item's ID" })
+  @Field(() => String)
   id: Guid;
 
   @Column()
