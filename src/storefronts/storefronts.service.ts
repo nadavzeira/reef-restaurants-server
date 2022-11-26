@@ -7,7 +7,6 @@ import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
 import { imageAsByteArray } from './entities/labrador.entity';
 import { Storefront } from './entities/storefront.entity';
-import { Base64 } from './entities/storefrontModels';
 
 @Injectable()
 export class StorefrontsService {
