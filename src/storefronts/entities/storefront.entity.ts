@@ -30,10 +30,10 @@ export class Storefront {
   address: string;
 
   @Column('bytea')
-  @Field(() => String /* TODO: Fix type*/, {
+  @Field(() => [Int], {
     description: 'An image of the storefront',
   })
-  image: Base64<imageTypes>;
+  image: Uint8Array;
 
   @Column('int', { array: true })
   @Field(() => [Int], {

@@ -22,7 +22,7 @@ type Storefront {
   address: String!
 
   """An image of the storefront"""
-  image: String!
+  image: [Int!]!
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]!
@@ -98,7 +98,7 @@ input CreateStorefrontInput {
   address: String!
 
   """An image of the storefront"""
-  image: String!
+  image: [Int!]!
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]!
@@ -112,7 +112,7 @@ input UpdateStorefrontInput {
   address: String
 
   """An image of the storefront"""
-  image: String
+  image: [Int!]
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]

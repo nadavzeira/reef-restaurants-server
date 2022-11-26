@@ -5,7 +5,9 @@ import { ArrayContains, Repository } from 'typeorm';
 
 import { CreateStorefrontInput } from './dto/create-storefront.input';
 import { UpdateStorefrontInput } from './dto/update-storefront.input';
+import { imageAsByteArray } from './entities/labrador.entity';
 import { Storefront } from './entities/storefront.entity';
+import { Base64 } from './entities/storefrontModels';
 
 @Injectable()
 export class StorefrontsService {
@@ -18,7 +20,8 @@ export class StorefrontsService {
     createStorefrontInput: CreateStorefrontInput,
   ): Promise<Storefront> {
     const storefront = this.storefrontRepository.create(createStorefrontInput);
-
+    storefront.image = imageAsByteArray;
+    
     return await this.storefrontRepository.save(storefront);
   }
 
