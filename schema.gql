@@ -3,7 +3,6 @@
 # ------------------------------------------------------
 
 type MenuItem {
-  """The menu item's ID"""
   id: String!
 
   """The menu item's name"""
@@ -14,7 +13,6 @@ type MenuItem {
 }
 
 type Storefront {
-  """The storefront's ID"""
   id: String!
 
   """The storefront's name"""
@@ -34,10 +32,12 @@ type Storefront {
 
   """The storefront's menu"""
   menu: [MenuItem!]!
+
+  """The storefront's menu"""
+  coupons: [Coupon!]!
 }
 
 type Coupon {
-  """The storefront's ID"""
   id: String!
 
   """The coupon's type"""
@@ -48,7 +48,6 @@ type Coupon {
 }
 
 type Order {
-  """The order's ID"""
   id: String!
 
   """The order's customer name"""
@@ -56,6 +55,12 @@ type Order {
 
   """The order's customer address"""
   customerAddress: String!
+
+  """The order's items"""
+  items: [MenuItem!]!
+
+  """The order's coupons"""
+  coupons: [Coupon!]!
 }
 
 type Query {
@@ -132,25 +137,11 @@ input CreateOrderInput {
 }
 
 input MenuItemInput {
-  """The menu item's ID"""
   id: String!
-
-  """The menu item's name"""
-  name: String!
-
-  """The menu item's price"""
-  price: Int!
 }
 
 input CouponInput {
-  """The storefront's ID"""
   id: String!
-
-  """The coupon's type"""
-  type: String!
-
-  """The coupon's discount"""
-  discount: Int!
 }
 
 input UpdateOrderInput {

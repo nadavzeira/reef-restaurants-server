@@ -9,6 +9,7 @@ import { Coupon } from './entities/coupon.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Coupon, Storefront, Order])],
+  exports: [CouponsService],
   providers: [CouponsResolver, CouponsService],
 })
 export class CouponsModule {}

@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Guid } from 'guid-typescript';
-import { Repository } from 'typeorm';
+import { Order } from 'src/orders/entities/order.entity';
+import { ArrayContains, Repository } from 'typeorm';
 
 import { CreateMenuItemInput } from './dto/create-menu-item.input';
 import { UpdateMenuItemInput } from './dto/update-menu-item.input';
@@ -59,7 +60,7 @@ export class MenuItemsService {
     return menuItem;
   }
 
-  async findStorefrontMenu(id: Guid): Promise<Array<MenuItem>> {
+  async findAllByStorefront(id: Guid): Promise<Array<MenuItem>> {
     const menuItems = await this.menuItemRepository.find({
       where: {
         storefront: {
@@ -67,6 +68,24 @@ export class MenuItemsService {
         },
       },
     });
+
+    if (!menuItems) {
+      throw new NotFoundException(`No menu items found for storefront #${id}`);
+    }
+
+    return menuItems;
+  }
+
+  async findAllByOrder(order: Order): Promise<Array<MenuItem>> {
+    const menuItems = await this.menuItemRepository.find({
+      where: {
+        orders: ArrayContains([order]),
+      },
+    });
+
+    if (!menuItems) {
+      throw new NotFoundException(`No menu items found for order #${order.id}`);
+    }
 
     return menuItems;
   }

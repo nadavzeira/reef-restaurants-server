@@ -1,7 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Guid } from 'guid-typescript';
-import { Repository } from 'typeorm';
+import { Storefront } from 'src/storefronts/entities/storefront.entity';
+import { ArrayContains, Repository } from 'typeorm';
 
 import { CreateCouponInput } from './dto/create-coupon.input';
 import { UpdateCouponInput } from './dto/update-coupon.input';
@@ -56,5 +57,37 @@ export class CouponsService {
     await this.couponRepository.remove(coupon);
 
     return coupon;
+  }
+
+  async findAllByStorefront(storefront: Storefront): Promise<Array<Coupon>> {
+    const coupons = await this.couponRepository.find({
+      where: {
+        storefronts: ArrayContains<Storefront>([storefront]),
+      },
+    });
+
+    if (!coupons) {
+      throw new NotFoundException(
+        `No coupons foudn for storefront #${storefront.id}`,
+      );
+    }
+
+    return coupons;
+  }
+
+  async findAllByOrder(id: Guid): Promise<Array<Coupon>> {
+    const coupons = await this.couponRepository.find({
+      where: {
+        order: {
+          id: id.toString(),
+        },
+      },
+    });
+
+    if (!coupons) {
+      throw new NotFoundException(`No menu items found for order #${id}`);
+    }
+
+    return coupons;
   }
 }

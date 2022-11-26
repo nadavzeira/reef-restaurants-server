@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { CouponsModule } from 'src/coupons/coupons.module';
 import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import { MenuItemsModule } from 'src/menu-items/menu-items.module';
@@ -14,6 +15,7 @@ import { StorefrontsService } from './storefronts.service';
     TypeOrmModule.forFeature([Storefront, MenuItem, Coupon]),
     OrdersModule,
     MenuItemsModule,
+    CouponsModule,
   ],
   providers: [StorefrontsResolver, StorefrontsService],
 })

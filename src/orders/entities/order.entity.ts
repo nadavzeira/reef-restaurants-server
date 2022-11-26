@@ -1,5 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Guid } from 'guid-typescript';
+import { Coupon } from 'src/coupons/entities/coupon.entity';
+import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import {
   Column,
   Entity,
@@ -10,8 +12,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Coupon } from 'src/coupons/entities/coupon.entity';
-import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import { Storefront } from './../../storefronts/entities/storefront.entity';
 
 @Entity()
@@ -34,7 +34,7 @@ export class Order {
 
   @ManyToMany(() => MenuItem, (menuItem) => menuItem.orders)
   @JoinTable()
-  menuItems: MenuItem[];
+  items: MenuItem[];
 
   @OneToMany(() => Coupon, (coupon) => coupon.order)
   coupons: Coupon[];

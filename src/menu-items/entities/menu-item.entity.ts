@@ -28,6 +28,6 @@ export class MenuItem {
   @ManyToOne(() => Storefront, (storefront) => storefront.menuItems)
   storefront: Storefront;
 
-  @ManyToMany(() => Order, (order) => order.menuItems)
+  @ManyToMany(() => Order, (order) => order.items)
   orders: Order[];
 }
