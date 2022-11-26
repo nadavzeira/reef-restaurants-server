@@ -10,7 +10,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { CouponType } from './couponsModels';
+export type CouponType = 'percentage' | 'sum' | '';
 
 @Entity()
 @ObjectType()

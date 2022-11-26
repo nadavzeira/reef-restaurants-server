@@ -1,6 +1,6 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
 
-import { CouponType } from '../entities/couponsModels';
+import { CouponType } from '../entities/coupon.entity';
 
 @InputType()
 export class CreateCouponInput {
