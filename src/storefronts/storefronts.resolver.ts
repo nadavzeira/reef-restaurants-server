@@ -62,7 +62,7 @@ export class StorefrontsResolver {
   }
 
   @Query(() => [Storefront], { name: 'storefrontsByZipCode' })
-  findByZipCode(@Args('zipCode', { type: () => Int }) zipCode: number) {
+  findAllByZipCode(@Args('zipCode', { type: () => Int }) zipCode: number) {
     const storefronts = this.storefrontsService.findAllByZipCode(zipCode);
 
     return storefronts;

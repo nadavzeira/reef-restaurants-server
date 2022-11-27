@@ -36,7 +36,7 @@ export class StorefrontsService {
     return storefront;
   }
   async findAll(): Promise<Array<Storefront>> {
-    return await this.storefrontRepository.find();
+    return this.storefrontRepository.find();
   }
 
   async update(

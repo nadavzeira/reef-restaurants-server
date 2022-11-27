@@ -16,6 +16,7 @@ import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { Order } from 'src/orders/entities/order.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
 import { typeOrmModuleOptions } from 'src/app.module';
+import storefrontsMock from './entities/storefronts.mock'
 
 describe('StorefrontsResolver', () => {
   let resolver: StorefrontsResolver;
@@ -24,6 +25,11 @@ describe('StorefrontsResolver', () => {
   let orderRepository: Repository<Order>;
   let menuItemRepository: Repository<MenuItem>;
   let couponRepository: Repository<Coupon>;
+
+  const storefrontsService = {
+    findAll: jest.fn(() => (storefrontsMock)),
+    findAllByZipCode: jest.fn(() => (storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(1)))),
+  }
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -35,8 +41,7 @@ describe('StorefrontsResolver', () => {
       ],
       providers: [
         StorefrontsResolver,
-        StorefrontsService,
-        OrdersService, MenuItemsService, CouponsService,
+
         {
           provide: getRepositoryToken(Storefront),
           useValue: createMock<Repository<Storefront>>(),
@@ -53,6 +58,12 @@ describe('StorefrontsResolver', () => {
           provide: getRepositoryToken(Coupon),
           useValue: createMock<Repository<Coupon>>(),
         },
+
+        {
+          provide: StorefrontsService,
+          useValue: storefrontsService
+        },
+        OrdersService, MenuItemsService, CouponsService,
       ],
     }).compile();
 
@@ -65,8 +76,15 @@ describe('StorefrontsResolver', () => {
     couponRepository = module.get<Repository<Coupon>>(getRepositoryToken(Coupon));
   });
 
-  it('should be defined', () => {
-    
-    expect(resolver).toBeDefined();
+  it('should have a create function', () => {
+    expect(resolver.createStorefront).toBeDefined();
+  });
+
+  it('should find all storefronts', () => {
+    expect((resolver.findAll() as unknown as Storefront[]).length).toBeGreaterThan(0);
+  });
+
+  it('should find all storefronts with a zip code of 1', () => {
+    expect((resolver.findAllByZipCode(1) as unknown as Storefront[]).length).toBeGreaterThan(0);
   });
 });
