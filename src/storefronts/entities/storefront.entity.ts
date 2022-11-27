@@ -12,8 +12,6 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-import { Base64, imageTypes } from './storefrontModels';
-
 @Entity()
 @ObjectType()
 export class Storefront {

@@ -20,7 +20,7 @@ export class StorefrontsService {
   ): Promise<Storefront> {
     const storefront = this.storefrontRepository.create(createStorefrontInput);
     storefront.image = imageAsByteArray;
-    
+
     return await this.storefrontRepository.save(storefront);
   }
 
