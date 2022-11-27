@@ -27,7 +27,4 @@ $ npm i; npm start
 ```bash
 # unit tests
 $ npm run test
-
-# e2e test
-$ npm run test:e2e
 ```
