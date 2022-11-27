@@ -1,4 +1,5 @@
 import { createMock } from '@golevelup/ts-jest';
+import { ModuleMetadata } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { Guid } from 'guid-typescript';
@@ -13,7 +14,7 @@ describe('MenuItemsService', () => {
   let service: MenuItemsService;
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testingModuleMetaData: ModuleMetadata = {
       imports: [TypeOrmModule.forRoot(typeOrmModuleOptions)],
       providers: [
         MenuItemsService,
@@ -26,7 +27,9 @@ describe('MenuItemsService', () => {
           }),
         },
       ],
-    }).compile();
+
+    };
+    const module: TestingModule = await Test.createTestingModule(testingModuleMetaData).compile();
 
     service = module.get<MenuItemsService>(MenuItemsService);
   });
