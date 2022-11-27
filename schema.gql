@@ -102,6 +102,20 @@ input CreateStorefrontInput {
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]!
+
+  """The storefront's menu"""
+  menu: [MenuItemInput!]!
+
+  """The storefront's supported coupons"""
+  coupons: [CouponInput!]!
+}
+
+input MenuItemInput {
+  id: String!
+}
+
+input CouponInput {
+  id: String!
 }
 
 input UpdateStorefrontInput {
@@ -116,6 +130,12 @@ input UpdateStorefrontInput {
 
   """A list of zipcodes in the storefront's coverage area"""
   zipCodes: [Int!]
+
+  """The storefront's menu"""
+  menu: [MenuItemInput!]
+
+  """The storefront's supported coupons"""
+  coupons: [CouponInput!]
   id: String!
 }
 
@@ -134,14 +154,6 @@ input CreateOrderInput {
 
   """The order's coupons"""
   coupons: [CouponInput!]!
-}
-
-input MenuItemInput {
-  id: String!
-}
-
-input CouponInput {
-  id: String!
 }
 
 input UpdateOrderInput {

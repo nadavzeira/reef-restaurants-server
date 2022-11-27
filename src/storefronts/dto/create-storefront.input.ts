@@ -1,6 +1,6 @@
 import { Field, InputType, Int } from '@nestjs/graphql';
-
-import { Base64, imageTypes } from '../entities/storefrontModels';
+import { CouponInput } from 'src/coupons/entities/coupon-input.entity';
+import { MenuItemInput } from 'src/menu-items/entities/menu-item-input.entity';
 
 @InputType()
 export class CreateStorefrontInput {
@@ -19,4 +19,10 @@ export class CreateStorefrontInput {
     description: "A list of zipcodes in the storefront's coverage area",
   })
   zipCodes: number[];
+  
+  @Field(() => [MenuItemInput], { description: "The storefront's menu" })
+  menu: MenuItemInput[];
+
+  @Field(() => [CouponInput], { description: "The storefront's supported coupons" })
+  coupons: CouponInput[];
 }
