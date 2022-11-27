@@ -3,7 +3,7 @@ import { Guid } from 'guid-typescript';
 import { Storefront } from './storefront.entity';
 
 export const defaultStorefront: Storefront = {
-  id: Guid.createEmpty(),
+  id: Guid.create(),
   name: '',
   address: '',
   image: new Uint8Array(),

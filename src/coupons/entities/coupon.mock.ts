@@ -5,7 +5,7 @@ import storefrontsMock, { defaultStorefront } from 'src/storefronts/entities/sto
 import { Coupon } from './coupon.entity';
 
 export const defaultCoupon: Coupon = {
-  id: Guid.createEmpty(),
+  id: Guid.create(),
   type: '',
   discount: 10,
   storefronts: storefrontsMock,

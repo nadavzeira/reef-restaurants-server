@@ -6,7 +6,7 @@ import { defaultStorefront } from 'src/storefronts/entities/storefronts.mock';
 import { Order } from './order.entity';
 
 export const defaultOrder: Order = {
-  id: Guid.createEmpty(),
+  id: Guid.create(),
   customerName: '',
   customerAddress: '',
   storefront: defaultStorefront,

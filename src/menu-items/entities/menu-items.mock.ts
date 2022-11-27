@@ -5,7 +5,7 @@ import { defaultStorefront } from 'src/storefronts/entities/storefronts.mock';
 import { MenuItem } from './menu-item.entity';
 
 export const defaultMenuItem: MenuItem = {
-  id: Guid.createEmpty(),
+  id: Guid.create(),
   name: '',
   price: NaN,
   storefront: defaultStorefront,
