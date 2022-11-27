@@ -20,7 +20,7 @@ export class Coupon {
   id: Guid;
 
   @Column()
-  @Field(() => String /* TODO: Fix type*/, { description: "The coupon's type" })
+  @Field(() => String, { description: "The coupon's type" })
   type: CouponType;
 
   @Column('int')

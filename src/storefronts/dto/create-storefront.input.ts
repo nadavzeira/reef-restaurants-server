@@ -10,7 +10,7 @@ export class CreateStorefrontInput {
   @Field(() => String, { description: "The storefront's address" })
   address: string;
 
-  @Field(() => [Int] /* TODO: Fix type*/, {
+  @Field(() => [Int], {
     description: 'An image of the storefront',
   })
   image: Uint8Array;
