@@ -9,7 +9,7 @@ export const defaultMenuItem: MenuItem = {
   name: '',
   price: NaN,
   storefront: defaultStorefront,
-  orders: ordersMock
+  orders: ordersMock,
 };
 
 const storefrontId: Guid = Guid.parse('7dad9a03-ecfb-4380-b41a-fb1e3be2d1c3');
@@ -20,10 +20,13 @@ for (let i = 1; i <= 8; i++) {
   const singleMenuItemMock: MenuItem = {
     ...defaultMenuItem,
     name: `MenuItem #${i}`,
-    storefront: (i % 2 === 0) ? defaultMenuItem.storefront : {
-        id: storefrontId,
-        ...defaultMenuItem.storefront
-    }
+    storefront:
+      i % 2 === 0
+        ? defaultMenuItem.storefront
+        : {
+            id: storefrontId,
+            ...defaultMenuItem.storefront,
+          },
   };
 
   menuItemsMock = [...menuItemsMock, singleMenuItemMock];

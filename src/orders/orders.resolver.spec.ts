@@ -1,20 +1,20 @@
-import { defaultOrder } from 'src/orders/entities/orders.mock';
+import { createMock } from '@golevelup/ts-jest';
+import { ModuleMetadata } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
-
-import { OrdersResolver } from './orders.resolver';
-import { OrdersService } from './orders.service';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmModuleOptions } from 'src/app.module';
 import { CouponsModule } from 'src/coupons/coupons.module';
-import { MenuItemsModule } from 'src/menu-items/menu-items.module';
-import { ModuleMetadata } from '@nestjs/common';
 import { CouponsService } from 'src/coupons/coupons.service';
-import { MenuItemsService } from 'src/menu-items/menu-items.service';
-import { createMock } from '@golevelup/ts-jest';
-import { Repository } from 'typeorm';
-import { Order } from './entities/order.entity';
 import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
+import { MenuItemsModule } from 'src/menu-items/menu-items.module';
+import { MenuItemsService } from 'src/menu-items/menu-items.service';
+import { defaultOrder } from 'src/orders/entities/orders.mock';
+import { Repository } from 'typeorm';
+
+import { Order } from './entities/order.entity';
+import { OrdersResolver } from './orders.resolver';
+import { OrdersService } from './orders.service';
 
 describe('OrdersResolver', () => {
   let resolver: OrdersResolver;

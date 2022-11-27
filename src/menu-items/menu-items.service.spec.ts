@@ -5,9 +5,9 @@ import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { Guid } from 'guid-typescript';
 import { typeOrmModuleOptions } from 'src/app.module';
 import { FindManyOptions, Repository } from 'typeorm';
+
 import { MenuItem } from './entities/menu-item.entity';
 import menuItemsMock from './entities/menu-items.mock';
-
 import { MenuItemsService } from './menu-items.service';
 
 describe('MenuItemsService', () => {
@@ -27,9 +27,10 @@ describe('MenuItemsService', () => {
           }),
         },
       ],
-
     };
-    const module: TestingModule = await Test.createTestingModule(testingModuleMetaData).compile();
+    const module: TestingModule = await Test.createTestingModule(
+      testingModuleMetaData,
+    ).compile();
 
     service = module.get<MenuItemsService>(MenuItemsService);
   });

@@ -1,6 +1,6 @@
 import { Guid } from 'guid-typescript';
 import { defaultOrder } from 'src/orders/entities/orders.mock';
-import storefrontsMock, { defaultStorefront } from 'src/storefronts/entities/storefronts.mock';
+import storefrontsMock from 'src/storefronts/entities/storefronts.mock';
 
 import { Coupon } from './coupon.entity';
 

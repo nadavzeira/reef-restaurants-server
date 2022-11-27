@@ -23,9 +23,13 @@ describe('StorefrontsResolver', () => {
   let resolver: StorefrontsResolver;
 
   const storefrontsService = {
-    findAll: jest.fn(async (): Promise<Array<Storefront>> => (Promise.resolve(storefrontsMock))),
+    findAll: jest.fn(
+      async (): Promise<Array<Storefront>> => Promise.resolve(storefrontsMock),
+    ),
     findAllByZipCode: jest.fn(async (zipCode: number) =>
-      (Promise.resolve(storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(zipCode)))),
+      Promise.resolve(
+        storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(zipCode)),
+      ),
     ),
   };
 
