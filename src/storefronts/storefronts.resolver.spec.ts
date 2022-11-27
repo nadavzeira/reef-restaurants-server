@@ -23,9 +23,9 @@ describe('StorefrontsResolver', () => {
   let resolver: StorefrontsResolver;
 
   const storefrontsService = {
-    findAll: jest.fn(() => storefrontsMock),
-    findAllByZipCode: jest.fn((zipCode: number) =>
-      storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(zipCode)),
+    findAll: jest.fn(async (): Promise<Array<Storefront>> => (Promise.resolve(storefrontsMock))),
+    findAllByZipCode: jest.fn(async (zipCode: number) =>
+      (Promise.resolve(storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(zipCode)))),
     ),
   };
 
@@ -67,7 +67,9 @@ describe('StorefrontsResolver', () => {
       ],
     };
 
-    const module: TestingModule = await Test.createTestingModule(testingModuleMetaData).compile();
+    const module: TestingModule = await Test.createTestingModule(
+      testingModuleMetaData,
+    ).compile();
 
     resolver = module.get<StorefrontsResolver>(StorefrontsResolver);
   });
@@ -75,20 +77,20 @@ describe('StorefrontsResolver', () => {
   it('should have a findAll function', () => {
     expect(resolver.findAll).toBeDefined();
   });
-  
+
   it('should find all storefronts', () => {
-    expect(
-      (resolver.findAll() as unknown as Storefront[] /* TODO: Fix type */).length,
-      ).toBeGreaterThan(0);
+    resolver.findAll().then((storefronts) => {
+      expect(storefronts.length).toBeGreaterThan(0);
     });
+  });
 
   it('should have a findAllByZipCode function', () => {
     expect(resolver.findAllByZipCode).toBeDefined();
   });
-    
+
   it('should find all storefronts with a zip code 1', () => {
-    expect(
-      (resolver.findAllByZipCode(1) as unknown as Storefront[] /* TODO: Fix type */).length,
-    ).toBeGreaterThan(0);
+    resolver.findAllByZipCode(1).then((storefronts) => {
+      expect(storefronts.length).toBeGreaterThan(0);
+    });
   });
 });
