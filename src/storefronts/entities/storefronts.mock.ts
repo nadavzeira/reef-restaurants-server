@@ -2,8 +2,8 @@ import { Guid } from 'guid-typescript';
 
 import { Storefront } from './storefront.entity';
 
-const defaultStorefront: Storefront = {
-  id: Guid.create(),
+export const defaultStorefront: Storefront = {
+  id: Guid.createEmpty(),
   name: '',
   address: '',
   image: new Uint8Array(),
@@ -16,7 +16,7 @@ const defaultStorefront: Storefront = {
 let storefrontsMock: Storefront[] = [];
 
 for (let i = 1; i <= 10; i++) {
-  const singleStorefrontMock = {
+  const singleStorefrontMock: Storefront = {
     ...defaultStorefront,
     name: `Storefront #${i}`,
     zipCodes: [i],
