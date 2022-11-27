@@ -1,4 +1,5 @@
 import { createMock } from '@golevelup/ts-jest';
+import { ModuleMetadata } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
 import { typeOrmModuleOptions } from 'src/app.module';
@@ -23,13 +24,13 @@ describe('StorefrontsResolver', () => {
 
   const storefrontsService = {
     findAll: jest.fn(() => storefrontsMock),
-    findAllByZipCode: jest.fn(() =>
-      storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(1)),
+    findAllByZipCode: jest.fn((zipCode: number) =>
+      storefrontsMock.filter(({ zipCodes }) => zipCodes.includes(zipCode)),
     ),
   };
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const testingModuleMetaData: ModuleMetadata = {
       imports: [
         TypeOrmModule.forRoot(typeOrmModuleOptions),
         OrdersModule,
@@ -64,24 +65,30 @@ describe('StorefrontsResolver', () => {
         MenuItemsService,
         CouponsService,
       ],
-    }).compile();
+    };
+
+    const module: TestingModule = await Test.createTestingModule(testingModuleMetaData).compile();
 
     resolver = module.get<StorefrontsResolver>(StorefrontsResolver);
   });
 
-  it('should have a create function', () => {
-    expect(resolver.createStorefront).toBeDefined();
+  it('should have a findAll function', () => {
+    expect(resolver.findAll).toBeDefined();
   });
-
+  
   it('should find all storefronts', () => {
     expect(
-      (resolver.findAll() as unknown as Storefront[]).length,
-    ).toBeGreaterThan(0);
-  });
+      (resolver.findAll() as unknown as Storefront[] /* TODO: Fix type */).length,
+      ).toBeGreaterThan(0);
+    });
 
-  it('should find all storefronts with a zip code of 1', () => {
+  it('should have a findAllByZipCode function', () => {
+    expect(resolver.findAllByZipCode).toBeDefined();
+  });
+    
+  it('should find all storefronts with a zip code 1', () => {
     expect(
-      (resolver.findAllByZipCode(1) as unknown as Storefront[]).length,
+      (resolver.findAllByZipCode(1) as unknown as Storefront[] /* TODO: Fix type */).length,
     ).toBeGreaterThan(0);
   });
 });
