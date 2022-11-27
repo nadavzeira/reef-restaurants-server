@@ -1,4 +1,6 @@
-import { Base64 } from './storefrontModels';
+type ImageTypes = 'png' | 'jpeg' | 'jpg';
+type Base64<imageType extends ImageTypes> =
+  `data:image/${imageType};base64${string}`;
 
 function base64ToArrayBuffer(base64img) {
   const buffer = new Uint8Array(Buffer.from(base64img, 'base64'));
