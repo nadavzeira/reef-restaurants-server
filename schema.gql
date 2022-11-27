@@ -146,14 +146,18 @@ input CreateOrderInput {
   """The order's customer address"""
   customerAddress: String!
 
-  """The order's storefront id"""
-  storefrontId: String!
+  """The order's storefront"""
+  storefront: StorefrontInput!
 
   """The order's items"""
-  menuItems: [MenuItemInput!]!
+  items: [MenuItemInput!]!
 
   """The order's coupons"""
   coupons: [CouponInput!]!
+}
+
+input StorefrontInput {
+  id: String!
 }
 
 input UpdateOrderInput {
@@ -163,11 +167,11 @@ input UpdateOrderInput {
   """The order's customer address"""
   customerAddress: String
 
-  """The order's storefront id"""
-  storefrontId: String
+  """The order's storefront"""
+  storefront: StorefrontInput
 
   """The order's items"""
-  menuItems: [MenuItemInput!]
+  items: [MenuItemInput!]
 
   """The order's coupons"""
   coupons: [CouponInput!]
