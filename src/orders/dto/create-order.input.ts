@@ -11,11 +11,11 @@ export class CreateOrderInput {
   @Field(() => String, { description: "The order's customer address" })
   customerAddress: string;
 
-  @Field(() => String, { description: "The order's storefront id" })
-  storefrontId: Guid;
+  @Field(() => StorefrontInput, { description: "The order's storefront" })
+  storefront: StorefrontInput;
 
   @Field(() => [MenuItemInput], { description: "The order's items" })
-  menuItems: MenuItemInput[];
+  items: MenuItemInput[];
 
   @Field(() => [CouponInput], { description: "The order's coupons" })
   coupons: CouponInput[];
