@@ -2,6 +2,7 @@ import { Field, InputType } from '@nestjs/graphql';
 import { Guid } from 'guid-typescript';
 import { CouponInput } from 'src/coupons/entities/coupon-input.entity';
 import { MenuItemInput } from 'src/menu-items/entities/menu-item-input.entity';
+import { StorefrontInput } from 'src/storefronts/entities/storefront.input.entity';
 
 @InputType()
 export class CreateOrderInput {
