@@ -1,7 +1,7 @@
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 
 import { CouponsModule } from './coupons/coupons.module';
@@ -17,7 +17,7 @@ const GraphQL = GraphQLModule.forRoot<ApolloDriverConfig>({
   playground: true,
 });
 
-const TypeOrm = TypeOrmModule.forRoot({
+export const typeOrmModuleOptions: TypeOrmModuleOptions = {
   keepConnectionAlive: true,
   type: 'postgres',
   host: process.env.DB_HOST,
@@ -27,7 +27,9 @@ const TypeOrm = TypeOrmModule.forRoot({
   database: process.env.DB_DATABASE,
   autoLoadEntities: true,
   synchronize: true,
-});
+};
+
+const TypeOrm = TypeOrmModule.forRoot(typeOrmModuleOptions);
 
 @Module({
   imports: [

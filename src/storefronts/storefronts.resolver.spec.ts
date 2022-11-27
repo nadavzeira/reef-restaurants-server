@@ -15,6 +15,7 @@ import { Storefront } from './entities/storefront.entity';
 import { Coupon } from 'src/coupons/entities/coupon.entity';
 import { Order } from 'src/orders/entities/order.entity';
 import { MenuItem } from 'src/menu-items/entities/menu-item.entity';
+import { typeOrmModuleOptions } from 'src/app.module';
 
 describe('StorefrontsResolver', () => {
   let resolver: StorefrontsResolver;
@@ -24,14 +25,10 @@ describe('StorefrontsResolver', () => {
   let menuItemRepository: Repository<MenuItem>;
   let couponRepository: Repository<Coupon>;
 
-  jest.setTimeout(100000);
-  
   beforeEach(async () => {
-    jest.setTimeout(100000);
-    
     const module: TestingModule = await Test.createTestingModule({
       imports: [
-        TypeOrmModule.forRoot(),
+        TypeOrmModule.forRoot(typeOrmModuleOptions),
         OrdersModule,
         MenuItemsModule,
         CouponsModule,
@@ -39,7 +36,7 @@ describe('StorefrontsResolver', () => {
       providers: [
         StorefrontsResolver,
         StorefrontsService,
-        // OrdersService, MenuItemsService, CouponsService,
+        OrdersService, MenuItemsService, CouponsService,
         {
           provide: getRepositoryToken(Storefront),
           useValue: createMock<Repository<Storefront>>(),
@@ -69,7 +66,6 @@ describe('StorefrontsResolver', () => {
   });
 
   it('should be defined', () => {
-    jest.setTimeout(100000);
     
     expect(resolver).toBeDefined();
   });
