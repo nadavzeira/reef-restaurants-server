@@ -35,23 +35,23 @@ export class OrdersService {
   }
 
   async update(
-    orderId: Guid,
+    id: Guid,
     updateOrderInput: UpdateOrderInput,
   ): Promise<Order> {
     const order = await this.orderRepository.preload({
-      id: orderId,
+      id,
       ...updateOrderInput,
     });
 
     if (!order) {
-      throw new NotFoundException(`Order #${orderId} not found`);
+      throw new NotFoundException(`Order #${id} not found`);
     }
 
     return this.orderRepository.save(order);
   }
 
-  async remove(orderId: Guid): Promise<Order> {
-    const order = await this.findOne(orderId);
+  async remove(id: Guid): Promise<Order> {
+    const order = await this.findOne(id);
 
     await this.orderRepository.remove(order);
 

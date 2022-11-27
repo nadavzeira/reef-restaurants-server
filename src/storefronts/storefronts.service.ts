@@ -40,16 +40,16 @@ export class StorefrontsService {
   }
 
   async update(
-    storefrontId: Guid,
+    id: Guid,
     updateStorefrontInput: UpdateStorefrontInput,
   ): Promise<Storefront> {
     const storefront = await this.storefrontRepository.preload({
-      id: storefrontId,
+      id,
       ...updateStorefrontInput,
     });
 
     if (!storefront) {
-      throw new NotFoundException(`Storefront #${storefrontId} not found`);
+      throw new NotFoundException(`Storefront #${id} not found`);
     }
 
     return this.storefrontRepository.save(storefront);

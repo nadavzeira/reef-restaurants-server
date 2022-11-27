@@ -36,23 +36,23 @@ export class CouponsService {
   }
 
   async update(
-    couponId: Guid,
+    id: Guid,
     updateCouponInput: UpdateCouponInput,
   ): Promise<Coupon> {
     const coupon = await this.couponRepository.preload({
-      id: couponId,
+      id,
       ...updateCouponInput,
     });
 
     if (!coupon) {
-      throw new NotFoundException(`Coupon #${couponId} not found`);
+      throw new NotFoundException(`Coupon #${id} not found`);
     }
 
     return this.couponRepository.save(coupon);
   }
 
-  async remove(couponId: Guid): Promise<Coupon> {
-    const coupon = await this.findOne(couponId);
+  async remove(id: Guid): Promise<Coupon> {
+    const coupon = await this.findOne(id);
 
     await this.couponRepository.remove(coupon);
 

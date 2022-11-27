@@ -37,23 +37,23 @@ export class MenuItemsService {
   }
 
   async update(
-    menuItemId: Guid,
+    id: Guid,
     updateMenuItemInput: UpdateMenuItemInput,
   ): Promise<MenuItem> {
     const menuItem = await this.menuItemRepository.preload({
-      id: menuItemId,
+      id,
       ...updateMenuItemInput,
     });
 
     if (!menuItem) {
-      throw new NotFoundException(`MenuItem #${menuItemId} not found`);
+      throw new NotFoundException(`MenuItem #${id} not found`);
     }
 
     return this.menuItemRepository.save(menuItem);
   }
 
-  async remove(menuItemId: Guid): Promise<MenuItem> {
-    const menuItem = await this.findOne(menuItemId);
+  async remove(id: Guid): Promise<MenuItem> {
+    const menuItem = await this.findOne(id);
 
     await this.menuItemRepository.remove(menuItem);
 
