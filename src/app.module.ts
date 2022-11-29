@@ -8,6 +8,7 @@ import { CouponsModule } from './coupons/coupons.module';
 import { MenuItemsModule } from './menu-items/menu-items.module';
 import { OrdersModule } from './orders/orders.module';
 import { StorefrontsModule } from './storefronts/storefronts.module';
+import { HealthModule } from './health/health.module';
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ const TypeOrm = TypeOrmModule.forRoot(typeOrmModuleOptions);
   imports: [
     GraphQL,
     TypeOrm,
+    HealthModule,
     StorefrontsModule,
     MenuItemsModule,
     OrdersModule,
