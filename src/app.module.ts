@@ -17,6 +17,7 @@ const GraphQL = GraphQLModule.forRoot<ApolloDriverConfig>({
   autoSchemaFile: './schema.gql',
   debug: true,
   playground: true,
+  introspection: true,
 });
 
 export const typeOrmModuleOptions: TypeOrmModuleOptions = {
