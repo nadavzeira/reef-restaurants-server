@@ -20,9 +20,9 @@ A small server which helps restaurants manage their storefront, menu items & the
 
 In order to run this app locally, you need to have the following tools already set up-front:
   * **Node** - Installed on system (Only versions >=12.0.0. excluding version 13).
-  * **NPM** - Installed on system. Preferably version >=8.0.0.
+  * **NPM** - Installed on system (Preferably version >=8.0.0).
   * **Postgres** - Installed on system.
-  * **DB** - A database with the name 'reef', that runs on Postgres' default port (5432).
+  * **DB** - A database with the name 'reef' which runs on localhost:5432.
 
 ## Fire-up the app
 
