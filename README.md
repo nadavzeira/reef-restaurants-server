@@ -14,7 +14,7 @@
 
 ## Description
 
-A small server which helps restaurants manage their storefront, menu items & their orders 🍴 🚚 😋
+A small server which helps restaurants manage their storefront, menu items & orders 🍴 🚚 😋
 
 ## Pre-Requisites
 
